@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+   <link rel="stylesheet" href="wea.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Weather App</h1>
+
+        <div class="tab-container">
+            <p class="tab" data-userWeather>Your Weather</p>
+            <p class="tab" data-searchWeather>Search Weather</p>
+        </div>   
+
+        <div class="weather-container">
+            <!-- grant location container-->
+            <div class="grant-location-container">
+                <div style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 2rem;">📍</div>                     
+                <p>Grant Location Access</p>
+                <p>Allow Access to get weather Information</p>
+                <button class="btn" data-grantAccess>Grant Access</button>
+            </div>
+
+            <!-- search form -> form-container-->
+            <form class="form-container" data-searchForm>
+                <input placeholder="Search for City..." data-searchInput>
+                <button class="btn" type="submit">
+                    <span style="font-size: 16px;">🔍</span>
+                </button>
+            </form>
+
+            <!--- loading screen container -->
+            <div class="loading-container">
+                <div style="width: 150px; height: 150px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 2s linear infinite; margin-bottom: 1rem;"></div>
+                <p>Loading</p>
+            </div>
+
+            <!-- show weather info -->
+            <div class="user-info-container">
+                <!--city name and Flag-->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon>
+                </div>
+
+                <!-- weather description-->
+                <p data-weatherDesc></p>
+                <!--weather Icon-->
+                <img data-weatherIcon>
+                <!--temperature-->
+                <p data-temp></p>
+
+                <!--3 cards - parameters-->
+                <div class="parameter-container">
+                    <!--card 1-->
+                    <div class="parameter">
+                        <span style="font-size: 40px;">💨</span>
+                        <p>windspeed</p>
+                        <p data-windspeed></p>
+                    </div>
+
+                    <!--card 2-->
+                    <div class="parameter">
+                        <span style="font-size: 40px;">💧</span>
+                        <p>humidity</p>
+                        <p data-humidity></p>
+                    </div>
+
+                    <!--card 3-->
+                    <div class="parameter">
+                        <span style="font-size: 40px;">☁️</span>
+                        <p>Clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script src="wea.js"></script>
+</body>
+</html>
