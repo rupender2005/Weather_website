@@ -1,430 +1,659 @@
-/* Reset and Base Styles */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ================================
+   WEATHER APP - MODERN UI
+================================ */
 
-        /* CSS Custom Properties */
-        :root {
-            --color-primary-dark: #112d4e;
-            --color-primary-medium: #3f72af;
-            --color-neutral-light: #dbe2ef;
-            --color-neutral-lightest: #f9f7f7;
-            
-            /* Semantic colors */
-            --color-background: var(--color-primary-dark);
-            --color-surface: rgba(219, 226, 239, 0.5);
-            --color-text-primary: var(--color-neutral-lightest);
-            --color-text-secondary: rgba(255, 255, 255, 0.7);
-            
-            /* Typography */
-            --font-family-primary: 'Merriweather Sans', system-ui, -apple-system, sans-serif;
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.85rem;
-            --font-size-base: 0.875rem;
-            --font-size-md: 1rem;
-            --font-size-lg: 1.15rem;
-            --font-size-xl: 1.5rem;
-            --font-size-2xl: 1.75rem;
-            --font-size-3xl: 2rem;
-            --font-size-4xl: 2.75rem;
-            
-            /* Spacing */
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 0.75rem;
-            --spacing-lg: 1rem;
-            --spacing-xl: 1.5rem;
-            --spacing-2xl: 2rem;
-            --spacing-3xl: 3rem;
-            --spacing-4xl: 4rem;
-            
-            /* Border radius */
-            --radius-sm: 4px;
-            --radius-md: 5px;
-            --radius-lg: 10px;
-            --radius-full: 50%;
-            
-            /* Transitions */
-            --transition-fast: 0.15s ease-in-out;
-            --transition-base: 0.25s ease-in-out;
-        }
+:root {
+    --bg-1: #0f172a;
+    --bg-2: #1e3a8a;
+    --bg-3: #2563eb;
 
-        /* Base Body Styles */
-        body {
-            font-family: var(--font-family-primary);
-            color: var(--color-text-primary);
-        }
+    --white: #ffffff;
+    --text-main: #f8fafc;
+    --text-muted: rgba(248, 250, 252, 0.7);
 
-        /* Layout Components */
-        .wrapper {
-            min-height: 100vh;
-            width: 100%;
-            background: linear-gradient(160deg, var(--color-primary-dark) 0%, var(--color-primary-medium) 100%);
-            padding: var(--spacing-lg);
-        }
+    --glass: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.2);
 
-        /* Typography */
-        h1 {
-            text-align: center;
-            text-transform: uppercase;
-            padding-top: var(--spacing-lg);
-            font-size: var(--font-size-2xl);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
+    --blue: #60a5fa;
+    --blue-dark: #2563eb;
 
-        /* Tab Navigation */
-        .tab-container {
-            width: 90%;
-            max-width: 550px;
-            margin: var(--spacing-4xl) auto 0;
-            display: flex;
-            justify-content: space-between;
-            gap: var(--spacing-sm);
-        }
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
 
-        .tab {
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            letter-spacing: 1.75px;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            transition: background-color var(--transition-base);
-            flex: 1;
-            text-align: center;
-        }
+    --shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
 
-        .tab:hover {
-            background-color: rgba(219, 226, 239, 0.3);
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .tab.current-tab {
-            background-color: var(--color-surface);
-        }
+html {
+    font-size: 16px;
+}
 
-        /* Weather Container */
-        .weather-container {
-            margin-block: var(--spacing-4xl);
-        }
+body {
+    min-height: 100vh;
+    font-family: "Merriweather Sans", system-ui, sans-serif;
+    color: var(--text-main);
 
-        /* Buttons */
-        .btn {
-            all: unset;
-            font-size: var(--font-size-sm);
-            text-transform: uppercase;
-            border-radius: var(--radius-md);
-            background-color: var(--color-primary-medium);
-            cursor: pointer;
-            padding: var(--spacing-lg) var(--spacing-3xl);
-            margin-bottom: var(--spacing-lg);
-            transition: all var(--transition-base);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
+    background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.35), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.3), transparent 30%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
 
-        .btn:hover {
-            background-color: color-mix(in srgb, var(--color-primary-medium) 80%, white 20%);
-            transform: translateY(-2px);
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .btn:active {
-            transform: translateY(0);
-        }
+    padding: 30px 16px;
+}
 
-        /* Container States */
-        .sub-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* ================================
+   MAIN WRAPPER
+================================ */
 
-        /* Grant Location Container */
-        .grant-location-container {
-            display: none;
-        }
+.wrapper {
+    width: 100%;
+    max-width: 850px;
+    min-height: 650px;
 
-        .grant-location-container.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    padding: 35px;
 
-        .grant-location-container img {
-            margin-bottom: var(--spacing-2xl);
-            max-width: 100px;
-            height: auto;
-        }
+    border-radius: var(--radius-lg);
 
-        .grant-location-container p:first-of-type {
-            font-size: var(--font-size-2xl);
-            font-weight: 600;
-            text-align: center;
-        }
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid var(--glass-border);
 
-        .grant-location-container p:last-of-type {
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-2xl);
-            letter-spacing: 0.75px;
-            text-align: center;
-            max-width: 400px;
-        }
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-        /* Loading Container */
-        .loading-container {
-            display: none;
-        }
+    box-shadow: var(--shadow);
+}
 
-        .loading-container.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* ================================
+   TITLE
+================================ */
 
-        .loading-container p {
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
+h1 {
+    text-align: center;
 
-        /* User Info Container */
-        .user-info-container {
-            display: none;
-        }
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
 
-        .user-info-container.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    letter-spacing: -1px;
 
-        .name {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-lg);
-            justify-content: center;
-        }
+    margin-bottom: 30px;
 
-        .name p {
-            font-size: var(--font-size-3xl);
-            font-weight: 300;
-        }
+    color: white;
+}
 
-        .name img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-            scale: 0.5;
-            border-radius: 2px;
-        }
+h1::after {
+    content: "";
+    display: block;
 
-        .user-info-container p {
-            font-size: var(--font-size-xl);
-            font-weight: 200;
-            text-align: center;
-        }
+    width: 70px;
+    height: 4px;
 
-        .user-info-container img {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-        }
+    margin: 14px auto 0;
 
-        .user-info-container p[data-temp] {
-            font-size: var(--font-size-4xl);
-            font-weight: 700;
-            margin: var(--spacing-lg) 0;
-        }
+    border-radius: 50px;
 
-        /* Parameter Container */
-        .parameter-container {
-            width: 90%;
-            max-width: 600px;
-            margin: var(--spacing-2xl) auto 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-lg);
-            justify-content: center;
-        }
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #38bdf8
+    );
+}
 
-        .parameter {
-            width: calc(33.333% - var(--spacing-lg));
-            min-width: 140px;
-            max-width: 180px;
-            background-color: var(--color-surface);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-lg);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-            align-items: center;
-            transition: transform var(--transition-base);
-        }
+/* ================================
+   TABS
+================================ */
 
-        .parameter:hover {
-            transform: translateY(-2px);
-        }
+.tab-container {
+    width: 100%;
+    max-width: 500px;
 
-        .parameter img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
+    margin: 0 auto 35px;
 
-        .parameter p:first-of-type {
-            font-size: var(--font-size-lg);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
+    display: flex;
+    gap: 8px;
 
-        .parameter p:last-of-type {
-            font-size: var(--font-size-md);
-            font-weight: 200;
-            text-align: center;
-        }
+    padding: 6px;
 
-        /* Form Container */
-        .form-container {
-            display: none;
-            width: 90%;
-            max-width: 550px;
-            margin: 0 auto var(--spacing-3xl);
-            gap: var(--spacing-lg);
-        }
+    border-radius: 16px;
 
-        .form-container.active {
-            display: flex;
-        }
+    background: rgba(255, 255, 255, 0.08);
 
-        .form-container input {
-            all: unset;
-            flex: 1;
-            height: 40px;
-            padding: 0 var(--spacing-lg);
-            background-color: var(--color-surface);
-            border-radius: var(--radius-lg);
-            transition: all var(--transition-base);
-            font-size: var(--font-size-md);
-        }
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
 
-        .form-container input::placeholder {
-            color: var(--color-text-secondary);
-        }
+.tab {
+    flex: 1;
 
-        .form-container input:focus {
-            outline: 2px solid rgba(255, 255, 255, 0.5);
-            outline-offset: 2px;
-            background-color: rgba(219, 226, 239, 0.7);
-        }
+    text-align: center;
 
-        .form-container .btn {
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius-full);
-            margin-bottom: 0;
-            flex-shrink: 0;
-        }
+    padding: 12px 14px;
 
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .wrapper {
-                padding: var(--spacing-sm);
-            }
-            
-            h1 {
-                font-size: var(--font-size-xl);
-            }
-            
-            .tab {
-                font-size: var(--font-size-xs);
-                padding: var(--spacing-xs) var(--spacing-sm);
-            }
-            
-            .parameter-container {
-                gap: var(--spacing-sm);
-            }
-            
-            .parameter {
-                width: calc(50% - var(--spacing-sm) / 2);
-                min-width: 120px;
-                padding: var(--spacing-sm);
-            }
-            
-            .parameter img {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .name p {
-                font-size: var(--font-size-xl);
-            }
-            
-            .user-info-container p[data-temp] {
-                font-size: var(--font-size-3xl);
-            }
-        }
+    border-radius: 11px;
 
-        @media (max-width: 480px) {
-            .parameter-container {
-                flex-direction: column;
-                align-items: center;
-                max-width: 280px;
-            }
-            
-            .parameter {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .form-container {
-                flex-direction: column;
-                gap: var(--spacing-sm);
-            }
-            
-            .form-container input {
-                width: 100%;
-            }
-        }
+    cursor: pointer;
 
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
+    font-size: 14px;
+    font-weight: 600;
 
-        /* Animation for loading states */
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
+    color: rgba(255, 255, 255, 0.65);
 
-        .loading-container.active p {
-            animation: pulse 1.5s ease-in-out infinite;
-        } 
- 
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.tab:hover {
+    color: white;
+}
+
+.tab.current-tab {
+    background: rgba(255, 255, 255, 0.17);
+
+    color: white;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   WEATHER CONTAINER
+================================ */
+
+.weather-container {
+    width: 100%;
+
+    min-height: 430px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================================
+   LOCATION ACCESS
+================================ */
+
+.grant-location-container {
+    display: none;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.grant-location-container.active {
+    display: flex;
+}
+
+.location-icon {
+    width: 85px;
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    font-size: 38px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.grant-location-container p:first-of-type {
+    font-size: 24px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+.grant-location-container p:last-of-type {
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+/* ================================
+   BUTTON
+================================ */
+
+.btn {
+    border: none;
+
+    padding: 13px 24px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #3b82f6,
+        #2563eb
+    );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ================================
+   SEARCH FORM
+================================ */
+
+.form-container {
+    display: none;
+
+    width: 100%;
+    max-width: 550px;
+
+    margin: 0 auto 30px;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.form-container.active {
+    display: flex;
+}
+
+.form-container input {
+    flex: 1;
+
+    height: 52px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 14px;
+
+    padding: 0 18px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    color: white;
+
+    font-size: 15px;
+
+    transition:
+        border 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-container input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.form-container input:focus {
+    border-color: rgba(96, 165, 250, 0.8);
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-container .btn {
+    width: 52px;
+    height: 52px;
+
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+}
+
+/* ================================
+   LOADING
+================================ */
+
+.loading-container {
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+}
+
+.loading-container.active {
+    display: flex;
+}
+
+.weather-loader {
+    width: 55px;
+    height: 55px;
+
+    border: 4px solid rgba(255, 255, 255, 0.15);
+
+    border-top-color: #60a5fa;
+
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+}
+
+.loading-container p {
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
 @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
     }
+}
+
+/* ================================
+   WEATHER INFO
+================================ */
+
+.user-info-container {
+    display: none;
+
+    width: 100%;
+
+    align-items: center;
+
+    text-align: center;
+
+    animation: fadeUp 0.5s ease;
+}
+
+.user-info-container.active {
+    display: flex;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   CITY
+================================ */
+
+.name {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.name p {
+    font-size: 30px !important;
+
+    font-weight: 700 !important;
+}
+
+.name img {
+    width: 38px;
+    height: 28px;
+
+    object-fit: cover;
+
+    border-radius: 4px;
+}
+
+/* ================================
+   WEATHER DESCRIPTION
+================================ */
+
+[data-weatherDesc] {
+    font-size: 15px !important;
+
+    color: var(--text-muted);
+
+    text-transform: capitalize;
+
+    margin-bottom: 5px;
+}
+
+/* ================================
+   WEATHER ICON
+================================ */
+
+.user-info-container > img {
+    width: 105px;
+    height: 105px;
+
+    object-fit: contain;
+
+    margin: 5px 0;
+}
+
+/* ================================
+   TEMPERATURE
+================================ */
+
+[data-temp] {
+    font-size: clamp(3rem, 9vw, 5rem) !important;
+
+    line-height: 1;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -3px;
+
+    margin: 10px 0 30px !important;
+}
+
+/* ================================
+   PARAMETERS
+================================ */
+
+.parameter-container {
+    width: 100%;
+
+    max-width: 650px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 10px;
+}
+
+.parameter {
+    min-height: 145px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.parameter:hover {
+    transform: translateY(-5px);
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.parameter span {
+    font-size: 30px !important;
+
+    margin-bottom: 10px;
+}
+
+.parameter p:first-of-type {
+    font-size: 12px !important;
+
+    color: var(--text-muted);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    font-weight: 600;
+}
+
+.parameter p:last-of-type {
+    font-size: 18px !important;
+
+    font-weight: 700;
+
+    margin-top: 6px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .wrapper {
+        padding: 24px 18px;
+
+        border-radius: 22px;
+    }
+
+    h1 {
+        margin-bottom: 22px;
+    }
+
+    .tab-container {
+        margin-bottom: 25px;
+    }
+
+    .tab {
+        font-size: 12px;
+
+        padding: 11px 7px;
+    }
+
+    .weather-container {
+        min-height: 430px;
+    }
+
+    .parameter-container {
+        grid-template-columns: 1fr;
+
+        max-width: 280px;
+    }
+
+    .parameter {
+        min-height: 110px;
+
+        padding: 15px;
+    }
+
+    .name p {
+        font-size: 25px !important;
+    }
+
+    [data-temp] {
+        font-size: 3.5rem !important;
+    }
+}
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 420px) {
+
+    .wrapper {
+        padding: 20px 14px;
+    }
+
+    .form-container {
+        flex-direction: row;
+    }
+
+    .form-container input {
+        height: 48px;
+    }
+
+    .form-container .btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .grant-location-container p:first-of-type {
+        font-size: 20px;
+    }
+
+    .parameter-container {
+        max-width: 100%;
+    }
+}
